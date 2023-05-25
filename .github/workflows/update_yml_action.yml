@@ -29,7 +29,7 @@ jobs:
           message: 'Update Upgo Version' 
           title: 'Version Updates '
           token: ${{ secrets.ACCESS_TOKEN }}
-          valueFile: '/conf/config.yml'
+          valueFile: 'conf/config.yml'
           propertyPath: 'app.version'
           value: v2.0.0
           commitChange: true
