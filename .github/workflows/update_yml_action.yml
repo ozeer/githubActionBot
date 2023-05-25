@@ -11,6 +11,15 @@ jobs:
       # 切换到github目录下面
       - name: "Checkout代码"
         uses: actions/checkout@v3
+      - name: '打印当前目录'
+        run: |
+          echo "当前文件夹："
+          pwd
+          echo "当前文件夹列表："
+          ls
+          cd conf
+          echo "curent dir is"
+          pwd
       - name: 更新 config.yaml
         uses: fjogeleit/yaml-update-action@main
         with:
