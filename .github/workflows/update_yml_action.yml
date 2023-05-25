@@ -20,10 +20,10 @@ jobs:
           cd conf
           echo "curent dir is"
           pwd
-      - name: 更新 config.yaml
+      - name: 更新 config.yml
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: '/conf/config.yaml'
+          valueFile: '/conf/config.yml'
           propertyPath: 'app.version'
           value: v2.0.0
           commitChange: false
