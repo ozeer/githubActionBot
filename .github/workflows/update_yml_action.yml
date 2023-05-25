@@ -23,7 +23,7 @@ jobs:
       - name: 更新 config.yaml
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: './conf/config.yaml'
+          valueFile: '/conf/config.yaml'
           propertyPath: 'app.version'
           value: v2.0.0
           commitChange: false
