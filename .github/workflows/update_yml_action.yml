@@ -23,6 +23,12 @@ jobs:
       - name: 更新 config.yml
         uses: fjogeleit/yaml-update-action@main
         with:
+          branch: master
+          targetBranch: master
+          description: Test GitHub Action
+          message: 'Update Upgo Version' 
+          title: 'Version Updates '
+          token: ${{ secrets.ACCESS_TOKEN }}
           valueFile: '/conf/config.yml'
           propertyPath: 'app.version'
           value: v2.0.0
