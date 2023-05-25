@@ -26,7 +26,7 @@ jobs:
           valueFile: '/conf/config.yml'
           propertyPath: 'app.version'
           value: v2.0.0
-          commitChange: false
+          commitChange: true
       - name: 'path1'
         run: |
           echo "当前文件夹："
