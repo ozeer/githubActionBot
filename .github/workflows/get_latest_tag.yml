@@ -2,8 +2,9 @@ name: Get Latest Tag
 
 on:
   push:
-    tags:
-      - "*"
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   get-latest-tag:
