@@ -1,0 +1,21 @@
+name: Get Latest Tag
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  get-latest-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get latest tag
+        id: get-tag
+        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
+
+      - name: Print latest tag
+        run: echo "Latest tag: ${{ steps.get-tag.outputs.tag }}"
