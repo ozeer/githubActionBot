@@ -1,25 +1,39 @@
-name: 更新UpGo版本
+# release时触发
+name: '更新UpGo版本值'
 on:
   push:
     branches:
       - master
 
 jobs:
-  test-update-file:
+
+  update-file-version:
     runs-on: ubuntu-latest
     steps:
-      # 切换到github目录下面
+      # 第一步：切换到github目录下面
       - name: "Checkout代码"
         uses: actions/checkout@v3
-      - name: '打印当前目录'
+        with:
+          # Required due to the way Git works, without it this action won't be able to find any or the correct tags
+          fetch-depth: 0
+      # 第二步：获取当前最新tag标签值
+      - name: Get latest tag
+        id: get-tag
         run: |
-          echo "当前文件夹："
+          echo "当前文件夹是："
           pwd
-          echo "当前文件夹列表："
-          ls
-          cd conf
-          echo "curent dir is"
-          pwd
+          echo "当前所有Git tag标签值："
+          git tag -l
+          # 检查是否存在标签
+          if [[ -z $(git tag -l) ]]; then
+            echo "No tags found."
+            echo "TAG=::" >> $GITHUB_ENV
+          else
+            # 获取最新的标签
+            latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+            echo "TAG=$latest_tag" >> $GITHUB_ENV
+          fi
+      # 第三步：引用第三方workflow更新yml配置文件并提交修改后的代码
       - name: 更新 config.yml
         uses: fjogeleit/yaml-update-action@main
         with:
@@ -27,18 +41,9 @@ jobs:
           targetBranch: master
           description: Test GitHub Action
           message: 'Update Upgo Version' 
-          title: 'Version Updates '
+          title: 'Version Updates'
           token: ${{ secrets.ACCESS_TOKEN }}
           valueFile: 'conf/config.yml'
           propertyPath: 'app.version'
-          value: v2.0.0
+          value: ${{ env.TAG }}
           commitChange: true
-      - name: 'path1'
-        run: |
-          echo "当前文件夹："
-          pwd
-          echo "当前文件夹列表："
-          ls
-          cd conf
-          echo "curent dir is"
-          pwd
