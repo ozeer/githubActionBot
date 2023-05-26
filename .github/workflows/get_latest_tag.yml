@@ -1,4 +1,4 @@
-name: Get Latest Tag
+name: 获取Git最新tag标签
 
 on:
   push:
@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout代码仓库repository
+        uses: actions/checkout@v3
 
       - name: Get latest tag
         id: get-tag
