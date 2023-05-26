@@ -3,15 +3,15 @@ name: 获取Git最新tag标签
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   get-latest-tag:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout代码仓库repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Get latest tag
         id: get-tag
@@ -19,12 +19,13 @@ jobs:
           # 检查是否存在标签
           if [[ -z $(git tag -l) ]]; then
             echo "No tags found."
-            echo "::set-output name=tag::"
+            echo "TAG=::" >> $GITHUB_ENV
           else
             # 获取最新的标签
             latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
-            echo "::set-output name=tag::$latest_tag"
+            echo "TAG=$latest_tag" >> $GITHUB_ENV
           fi
 
       - name: Print latest tag
-        run: echo "The latest tag is ${{ steps.get-tag.outputs.tag }}"
+        run: echo "The latest tag is ${{ env.TAG }}"
+
