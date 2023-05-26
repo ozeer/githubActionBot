@@ -3,7 +3,7 @@ name: Get Latest Tag
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   get-latest-tag:
@@ -11,14 +11,20 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Get latest tag
         id: get-tag
         run: |
-          # 获取最新的标签
-          latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
-          echo "::set-output name=tag::$latest_tag"
+          # 检查是否存在标签
+          if [[ -z $(git tag -l) ]]; then
+            echo "No tags found."
+            echo "::set-output name=tag::"
+          else
+            # 获取最新的标签
+            latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+            echo "::set-output name=tag::$latest_tag"
+          fi
 
       - name: Print latest tag
         run: echo "The latest tag is ${{ steps.get-tag.outputs.tag }}"
