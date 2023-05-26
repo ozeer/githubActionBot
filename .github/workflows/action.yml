@@ -33,7 +33,7 @@ jobs:
       # 设置环境
       - name: "Set up Python"
         # uses: 指的是这一步骤需要先调用哪个 Action。
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         # with 代表传入参数
         with:
           python-version: 3.7
