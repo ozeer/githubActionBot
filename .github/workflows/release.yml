@@ -1,6 +1,9 @@
 name: GitHub发布
 
-on: push
+on: 
+  push:
+    tags:
+    - v*
 
 jobs:
   build:
