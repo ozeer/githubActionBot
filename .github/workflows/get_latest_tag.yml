@@ -16,6 +16,10 @@ jobs:
       - name: Get latest tag
         id: get-tag
         run: |
+          echo "当前文件夹是："
+          pwd
+          echo "当前所有Git tag标签值："
+          git tag -l
           # 检查是否存在标签
           if [[ -z $(git tag -l) ]]; then
             echo "No tags found."

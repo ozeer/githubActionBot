@@ -1,4 +1,4 @@
-name: '更新UpGo版本'
+name: 更新UpGo版本
 on:
   push:
     branches:
