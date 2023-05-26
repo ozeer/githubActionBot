@@ -3,7 +3,7 @@ name: Get Latest Tag
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   get-latest-tag:
