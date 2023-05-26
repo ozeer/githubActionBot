@@ -3,7 +3,7 @@ name: 获取Git最新tag标签
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   get-latest-tag:
