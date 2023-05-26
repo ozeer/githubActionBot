@@ -2,8 +2,8 @@
 name: '更新UpGo版本值'
 on:
   push:
-    branches:
-      - master
+    tags:
+    - v*
 
 jobs:
 
