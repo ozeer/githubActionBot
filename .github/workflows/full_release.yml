@@ -10,7 +10,7 @@ jobs:
     steps:
       # 第一步：切换到github目录下面
       - name: "Checkout代码"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         # with:
           # Required due to the way Git works, without it this action won't be able to find any or the correct tags
           # fetch-depth: 0
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Validates GO releaser config
       uses: docker://goreleaser/goreleaser:latest
