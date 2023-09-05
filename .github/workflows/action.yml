@@ -28,7 +28,7 @@ jobs:
 
       # 切换到github目录下面
       - name: "Checkout codes"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 设置环境
       - name: "Set up Python"
